@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "case_id": "naca2412_visc_re1e6_free_transition",
+  "description": "Built-in NACA 2412 viscous cambered-airfoil sweep.",
+  "airfoil": {
+    "type": "naca",
+    "code": "2412"
+  },
+  "options": {
+    "viscous": true,
+    "reynolds_number": 1000000.0,
+    "mach_number": 0.0,
+    "ncrit_top": 9.0,
+    "ncrit_bottom": 9.0,
+    "xtr_top": 1.0,
+    "xtr_bottom": 1.0,
+    "panel_count": 160,
+    "itmax": 50
+  },
+  "requested_alpha_deg": [
+    -4.0,
+    -2.0,
+    0.0,
+    2.0,
+    4.0,
+    6.0,
+    8.0
+  ],
+  "completed_alpha_deg": [
+    -4.0,
+    -2.0,
+    0.0,
+    2.0,
+    4.0,
+    6.0,
+    8.0
+  ],
+  "missing_alpha_deg": [],
+  "complete": true,
+  "source": {
+    "tool": "pristine XFOIL",
+    "cases_file": "baselines/cases.json"
+  },
+  "polar": {
+    "airfoil_name": "NACA 2412",
+    "mach_number": 0.0,
+    "reynolds_number": 1000000.0,
+    "ncrit_top": 9.0,
+    "ncrit_bottom": 9.0,
+    "forced_xtr_top": 1.0,
+    "forced_xtr_bottom": 1.0,
+    "columns": [
+      "alpha_deg",
+      "cl",
+      "cd",
+      "cdp",
+      "cm",
+      "xtr_top",
+      "xtr_bottom",
+      "itr_top",
+      "itr_bottom"
+    ],
+    "points": [
+      {
+        "alpha_deg": -4.0,
+        "cl": -0.1967,
+        "cd": 0.0077,
+        "cdp": 0.00115,
+        "cm": -0.0555,
+        "xtr_top": 0.8848,
+        "xtr_bottom": 0.1161,
+        "itr_top": 9.349,
+        "itr_bottom": 105.6922
+      },
+      {
+        "alpha_deg": -2.0,
+        "cl": 0.022,
+        "cd": 0.00659,
+        "cdp": 0.00061,
+        "cm": -0.054,
+        "xtr_top": 0.7828,
+        "xtr_bottom": 0.2958,
+        "itr_top": 15.5901,
+        "itr_bottom": 117.0684
+      },
+      {
+        "alpha_deg": 0.0,
+        "cl": 0.2371,
+        "cd": 0.00564,
+        "cdp": 0.00049,
+        "cm": -0.052,
+        "xtr_top": 0.6517,
+        "xtr_bottom": 0.6795,
+        "itr_top": 23.5781,
+        "itr_bottom": 139.8384
+      },
+      {
+        "alpha_deg": 2.0,
+        "cl": 0.4496,
+        "cd": 0.00578,
+        "cdp": 0.00079,
+        "cm": -0.0481,
+        "xtr_top": 0.5256,
+        "xtr_bottom": 0.9675,
+        "itr_top": 31.2661,
+        "itr_bottom": 157.043
+      },
+      {
+        "alpha_deg": 4.0,
+        "cl": 0.7146,
+        "cd": 0.00693,
+        "cdp": 0.00107,
+        "cm": -0.0573,
+        "xtr_top": 0.398,
+        "xtr_bottom": 1.0,
+        "itr_top": 39.1126,
+        "itr_bottom": 160.0
+      },
+      {
+        "alpha_deg": 6.0,
+        "cl": 0.9019,
+        "cd": 0.00905,
+        "cdp": 0.0017,
+        "cm": -0.0505,
+        "xtr_top": 0.2121,
+        "xtr_bottom": 1.0,
+        "itr_top": 51.0223,
+        "itr_bottom": 160.0
+      },
+      {
+        "alpha_deg": 8.0,
+        "cl": 1.0875,
+        "cd": 0.01234,
+        "cdp": 0.00321,
+        "cm": -0.0445,
+        "xtr_top": 0.066,
+        "xtr_bottom": 1.0,
+        "itr_top": 61.9043,
+        "itr_bottom": 160.0
+      }
+    ]
+  }
+}

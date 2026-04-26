@@ -1,0 +1,43 @@
+"""Public Python API for the standalone XFOIL kernel workflow."""
+
+from .api import (
+    __version__,
+    AirfoilRegistrationError,
+    AirfoilSpec,
+    AlphaSequenceResult,
+    C81GenerationError,
+    C81GenerationRequest,
+    C81GenerationResult,
+    IncompleteSolveError,
+    KernelConfig,
+    KernelError,
+    KernelExecutableNotFound,
+    KernelProtocolError,
+    PointResult,
+    RetryPolicy,
+    SolveOptions,
+    XfoilKernelClient,
+    generate_c81,
+    generate_c81_from_manifest,
+)
+
+__all__ = [
+    "__version__",
+    "AirfoilRegistrationError",
+    "AirfoilSpec",
+    "AlphaSequenceResult",
+    "C81GenerationError",
+    "C81GenerationRequest",
+    "C81GenerationResult",
+    "IncompleteSolveError",
+    "KernelConfig",
+    "KernelError",
+    "KernelExecutableNotFound",
+    "KernelProtocolError",
+    "PointResult",
+    "RetryPolicy",
+    "SolveOptions",
+    "XfoilKernelClient",
+    "generate_c81",
+    "generate_c81_from_manifest",
+]

@@ -1,0 +1,31 @@
+# Fortran build outputs
+*.o
+*.mod
+*.a
+*.so
+*.dylib
+*.exe
+/xfoil_kernel
+/xfoil_worker
+
+# Local build directories
+build/
+dist/
+_build/
+
+# Runtime artifacts from XFOIL-like runs
+*.bl
+*.polar
+*.dump
+*.log
+plot.ps
+dcp.out
+baselines/pristine/
+runs/
+
+# Python helper artifacts
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/

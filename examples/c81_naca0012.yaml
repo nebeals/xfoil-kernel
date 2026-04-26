@@ -1,0 +1,43 @@
+output_root: ../runs/examples/naca0012-c81/output
+report: ../runs/examples/naca0012-c81/output/report.json
+allow_incomplete: false
+
+worker:
+  driver_executable: ../build/kernel-driver/bin/xfoil_kernel_driver
+  session_executable: ../build/kernel-driver/bin/xfoil_kernel_session
+  use_session: true
+  runtime_root: ../runs/examples/naca0012-c81/worker
+
+airfoils:
+  NACA0012:
+    naca: "0012"
+
+defaults:
+  mach: [0.0, 0.2]
+  alpha: {start: -4.0, end: 8.0, step: 2.0}
+  header_format: commas
+  timeout_seconds: 120.0
+  retry:
+    enabled: true
+    initial_sequence: warm_start
+    warm_start_alpha_deg: 0.0
+    reverse_sequence: true
+    single_points: false
+    refinement_factors: [0.5, 0.25]
+    step_sizes_deg: [0.5]
+    approach_from: [below, above]
+  options:
+    viscous: true
+    reynolds_number: 1000000.0
+    itmax: 100
+    panel_count: 180
+    ncrit: 9.0
+    xtr_top: 1.0
+    xtr_bottom: 1.0
+
+tables:
+  - id: naca0012_demo
+    airfoil: NACA0012
+    c81_airfoil_id: NACA0012
+    output_dir: tables
+    reynolds: [1000000]

@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "case_id": "naca0012_inviscid_alpha",
+  "description": "Built-in NACA 0012 inviscid alpha sweep for basic panel/inviscid regression.",
+  "airfoil": {
+    "type": "naca",
+    "code": "0012"
+  },
+  "options": {
+    "viscous": false,
+    "mach_number": 0.0,
+    "panel_count": 160,
+    "itmax": 40
+  },
+  "requested_alpha_deg": [
+    -4.0,
+    -2.0,
+    0.0,
+    2.0,
+    4.0,
+    6.0,
+    8.0
+  ],
+  "completed_alpha_deg": [
+    -4.0,
+    -2.0,
+    0.0,
+    2.0,
+    4.0,
+    6.0,
+    8.0
+  ],
+  "missing_alpha_deg": [],
+  "complete": true,
+  "source": {
+    "tool": "pristine XFOIL",
+    "cases_file": "baselines/cases.json"
+  },
+  "polar": {
+    "airfoil_name": "NACA 0012",
+    "mach_number": 0.0,
+    "reynolds_number": 0.0,
+    "ncrit_top": 9.0,
+    "ncrit_bottom": 9.0,
+    "forced_xtr_top": 1.0,
+    "forced_xtr_bottom": 1.0,
+    "columns": [
+      "alpha_deg",
+      "cl",
+      "cd",
+      "cdp",
+      "cm",
+      "xtr_top",
+      "xtr_bottom",
+      "itr_top",
+      "itr_bottom"
+    ],
+    "points": [
+      {
+        "alpha_deg": -4.0,
+        "cl": -0.4829,
+        "cd": 0.0,
+        "cdp": -0.00109,
+        "cm": 0.0056,
+        "xtr_top": 0.0,
+        "xtr_bottom": 0.0,
+        "itr_top": 0.0,
+        "itr_bottom": 0.0
+      },
+      {
+        "alpha_deg": -2.0,
+        "cl": -0.2416,
+        "cd": 0.0,
+        "cdp": -0.00107,
+        "cm": 0.0028,
+        "xtr_top": 0.0,
+        "xtr_bottom": 0.0,
+        "itr_top": 0.0,
+        "itr_bottom": 0.0
+      },
+      {
+        "alpha_deg": 0.0,
+        "cl": 0.0,
+        "cd": 0.0,
+        "cdp": -0.00106,
+        "cm": -0.0,
+        "xtr_top": 0.0,
+        "xtr_bottom": 0.0,
+        "itr_top": 0.0,
+        "itr_bottom": 0.0
+      },
+      {
+        "alpha_deg": 2.0,
+        "cl": 0.2416,
+        "cd": 0.0,
+        "cdp": -0.00107,
+        "cm": -0.0028,
+        "xtr_top": 0.0,
+        "xtr_bottom": 0.0,
+        "itr_top": 0.0,
+        "itr_bottom": 0.0
+      },
+      {
+        "alpha_deg": 4.0,
+        "cl": 0.4829,
+        "cd": 0.0,
+        "cdp": -0.00109,
+        "cm": -0.0056,
+        "xtr_top": 0.0,
+        "xtr_bottom": 0.0,
+        "itr_top": 0.0,
+        "itr_bottom": 0.0
+      },
+      {
+        "alpha_deg": 6.0,
+        "cl": 0.7235,
+        "cd": 0.0,
+        "cdp": -0.00111,
+        "cm": -0.0083,
+        "xtr_top": 0.0,
+        "xtr_bottom": 0.0,
+        "itr_top": 0.0,
+        "itr_bottom": 0.0
+      },
+      {
+        "alpha_deg": 8.0,
+        "cl": 0.9634,
+        "cd": 0.0,
+        "cdp": -0.00115,
+        "cm": -0.011,
+        "xtr_top": 0.0,
+        "xtr_bottom": 0.0,
+        "itr_top": 0.0,
+        "itr_bottom": 0.0
+      }
+    ]
+  }
+}

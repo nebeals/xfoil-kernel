@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "case_id": "naca0012_option_panel220_alpha4",
+  "description": "NACA 0012 option check with a different panel count.",
+  "airfoil": {
+    "type": "naca",
+    "code": "0012"
+  },
+  "options": {
+    "viscous": true,
+    "reynolds_number": 1000000.0,
+    "mach_number": 0.0,
+    "ncrit": 9.0,
+    "xtr_top": 1.0,
+    "xtr_bottom": 1.0,
+    "panel_count": 220,
+    "itmax": 80
+  },
+  "requested_alpha_deg": [
+    4.0
+  ],
+  "completed_alpha_deg": [
+    4.0
+  ],
+  "missing_alpha_deg": [],
+  "complete": true,
+  "source": {
+    "tool": "pristine XFOIL",
+    "cases_file": "baselines/cases.json"
+  },
+  "polar": {
+    "airfoil_name": "NACA 0012",
+    "mach_number": 0.0,
+    "reynolds_number": 1000000.0,
+    "ncrit_top": 9.0,
+    "ncrit_bottom": 9.0,
+    "forced_xtr_top": 1.0,
+    "forced_xtr_bottom": 1.0,
+    "columns": [
+      "alpha_deg",
+      "cl",
+      "cd",
+      "cdp",
+      "cm",
+      "xtr_top",
+      "xtr_bottom",
+      "itr_top",
+      "itr_bottom"
+    ],
+    "points": [
+      {
+        "alpha_deg": 4.0,
+        "cl": 0.4274,
+        "cd": 0.00729,
+        "cdp": 0.00126,
+        "cm": 0.0061,
+        "xtr_top": 0.254,
+        "xtr_bottom": 0.9689,
+        "itr_top": 64.8143,
+        "itr_bottom": 216.08
+      }
+    ]
+  }
+}

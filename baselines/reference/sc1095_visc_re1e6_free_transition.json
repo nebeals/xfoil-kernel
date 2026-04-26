@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "case_id": "sc1095_visc_re1e6_free_transition",
+  "description": "SC1095 coordinate-file rotorcraft baseline with free transition allowed before trailing-edge trips.",
+  "airfoil": {
+    "type": "coordinates",
+    "path": "data/airfoils/sc1095_selig.dat",
+    "panel": true
+  },
+  "options": {
+    "viscous": true,
+    "reynolds_number": 1000000.0,
+    "mach_number": 0.0,
+    "ncrit_top": 9.0,
+    "ncrit_bottom": 9.0,
+    "xtr_top": 1.0,
+    "xtr_bottom": 1.0,
+    "panel_count": 160,
+    "itmax": 50
+  },
+  "requested_alpha_deg": [
+    -4.0,
+    -2.0,
+    0.0,
+    2.0,
+    4.0,
+    6.0,
+    8.0
+  ],
+  "completed_alpha_deg": [
+    -4.0,
+    -2.0,
+    2.0,
+    4.0,
+    6.0,
+    8.0
+  ],
+  "missing_alpha_deg": [
+    0.0
+  ],
+  "complete": false,
+  "source": {
+    "tool": "pristine XFOIL",
+    "cases_file": "baselines/cases.json"
+  },
+  "polar": {
+    "airfoil_name": "SIKORSKY SC1095 AIRFOIL",
+    "mach_number": 0.0,
+    "reynolds_number": 1000000.0,
+    "ncrit_top": 9.0,
+    "ncrit_bottom": 9.0,
+    "forced_xtr_top": 1.0,
+    "forced_xtr_bottom": 1.0,
+    "columns": [
+      "alpha_deg",
+      "cl",
+      "cd",
+      "cdp",
+      "cm",
+      "xtr_top",
+      "xtr_bottom",
+      "itr_top",
+      "itr_bottom"
+    ],
+    "points": [
+      {
+        "alpha_deg": -4.0,
+        "cl": -0.3446,
+        "cd": 0.008,
+        "cdp": 0.00134,
+        "cm": -0.0194,
+        "xtr_top": 0.9704,
+        "xtr_bottom": 0.0967,
+        "itr_top": 3.8087,
+        "itr_bottom": 99.1421
+      },
+      {
+        "alpha_deg": -2.0,
+        "cl": -0.1346,
+        "cd": 0.00687,
+        "cdp": 0.00076,
+        "cm": -0.0149,
+        "xtr_top": 0.8838,
+        "xtr_bottom": 0.1808,
+        "itr_top": 9.9164,
+        "itr_bottom": 104.8871
+      },
+      {
+        "alpha_deg": 2.0,
+        "cl": 0.293,
+        "cd": 0.00632,
+        "cdp": 0.00078,
+        "cm": -0.0092,
+        "xtr_top": 0.3284,
+        "xtr_bottom": 0.9548,
+        "itr_top": 46.5044,
+        "itr_bottom": 155.8758
+      },
+      {
+        "alpha_deg": 4.0,
+        "cl": 0.531,
+        "cd": 0.00791,
+        "cdp": 0.00119,
+        "cm": -0.0125,
+        "xtr_top": 0.1424,
+        "xtr_bottom": 1.0,
+        "itr_top": 59.0335,
+        "itr_bottom": 160.0
+      },
+      {
+        "alpha_deg": 6.0,
+        "cl": 0.7546,
+        "cd": 0.00956,
+        "cdp": 0.00201,
+        "cm": -0.0129,
+        "xtr_top": 0.0912,
+        "xtr_bottom": 1.0,
+        "itr_top": 62.7324,
+        "itr_bottom": 160.0
+      },
+      {
+        "alpha_deg": 8.0,
+        "cl": 0.9751,
+        "cd": 0.01145,
+        "cdp": 0.00302,
+        "cm": -0.0129,
+        "xtr_top": 0.0665,
+        "xtr_bottom": 1.0,
+        "itr_top": 64.7417,
+        "itr_bottom": 160.0
+      }
+    ]
+  }
+}

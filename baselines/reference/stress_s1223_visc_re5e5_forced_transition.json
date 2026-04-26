@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "case_id": "stress_s1223_visc_re5e5_forced_transition",
+  "description": "S1223 high-camber coordinate-file stress case with low-Re forced transition.",
+  "airfoil": {
+    "type": "coordinates",
+    "path": "data/airfoils/stress/S1223-selig.dat",
+    "panel": true
+  },
+  "options": {
+    "viscous": true,
+    "reynolds_number": 500000.0,
+    "mach_number": 0.0,
+    "ncrit": 9.0,
+    "xtr_top": 0.05,
+    "xtr_bottom": 0.05,
+    "panel_count": 180,
+    "itmax": 120
+  },
+  "requested_alpha_deg": [
+    0.0,
+    2.0,
+    4.0
+  ],
+  "completed_alpha_deg": [
+    0.0,
+    2.0,
+    4.0
+  ],
+  "missing_alpha_deg": [],
+  "complete": true,
+  "source": {
+    "tool": "pristine XFOIL",
+    "cases_file": "baselines/cases.json"
+  },
+  "polar": {
+    "airfoil_name": "S1223",
+    "mach_number": 0.0,
+    "reynolds_number": 500000.0,
+    "ncrit_top": 9.0,
+    "ncrit_bottom": 9.0,
+    "forced_xtr_top": 0.05,
+    "forced_xtr_bottom": 0.05,
+    "columns": [
+      "alpha_deg",
+      "cl",
+      "cd",
+      "cdp",
+      "cm",
+      "xtr_top",
+      "xtr_bottom",
+      "itr_top",
+      "itr_bottom"
+    ],
+    "points": [
+      {
+        "alpha_deg": 0.0,
+        "cl": 1.1477,
+        "cd": 0.01752,
+        "cdp": 0.00294,
+        "cm": -0.2639,
+        "xtr_top": 0.05,
+        "xtr_bottom": 0.05,
+        "itr_top": 72.1079,
+        "itr_bottom": 114.07
+      },
+      {
+        "alpha_deg": 2.0,
+        "cl": 1.3588,
+        "cd": 0.01924,
+        "cdp": 0.00339,
+        "cm": -0.2602,
+        "xtr_top": 0.05,
+        "xtr_bottom": 0.05,
+        "itr_top": 72.1079,
+        "itr_bottom": 114.07
+      },
+      {
+        "alpha_deg": 4.0,
+        "cl": 1.5515,
+        "cd": 0.02161,
+        "cdp": 0.00434,
+        "cm": -0.2536,
+        "xtr_top": 0.05,
+        "xtr_bottom": 0.05,
+        "itr_top": 72.1079,
+        "itr_bottom": 114.07
+      }
+    ]
+  }
+}

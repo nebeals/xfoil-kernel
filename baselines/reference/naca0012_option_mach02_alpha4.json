@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "case_id": "naca0012_option_mach02_alpha4",
+  "description": "NACA 0012 option check at nonzero Mach number.",
+  "airfoil": {
+    "type": "naca",
+    "code": "0012"
+  },
+  "options": {
+    "viscous": true,
+    "reynolds_number": 1000000.0,
+    "mach_number": 0.2,
+    "ncrit": 9.0,
+    "xtr_top": 1.0,
+    "xtr_bottom": 1.0,
+    "panel_count": 160,
+    "itmax": 80
+  },
+  "requested_alpha_deg": [
+    4.0
+  ],
+  "completed_alpha_deg": [
+    4.0
+  ],
+  "missing_alpha_deg": [],
+  "complete": true,
+  "source": {
+    "tool": "pristine XFOIL",
+    "cases_file": "baselines/cases.json"
+  },
+  "polar": {
+    "airfoil_name": "NACA 0012",
+    "mach_number": 0.2,
+    "reynolds_number": 1000000.0,
+    "ncrit_top": 9.0,
+    "ncrit_bottom": 9.0,
+    "forced_xtr_top": 1.0,
+    "forced_xtr_bottom": 1.0,
+    "columns": [
+      "alpha_deg",
+      "cl",
+      "cd",
+      "cdp",
+      "cm",
+      "xtr_top",
+      "xtr_bottom",
+      "itr_top",
+      "itr_bottom"
+    ],
+    "points": [
+      {
+        "alpha_deg": 4.0,
+        "cl": 0.4369,
+        "cd": 0.00743,
+        "cdp": 0.00055,
+        "cm": 0.0068,
+        "xtr_top": 0.2389,
+        "xtr_bottom": 0.9663,
+        "itr_top": 48.299,
+        "itr_bottom": 156.9364
+      }
+    ]
+  }
+}

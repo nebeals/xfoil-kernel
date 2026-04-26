@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "case_id": "stress_naca0024_inviscid_alpha",
+  "description": "Coordinate-file NACA 0024 thick-airfoil inviscid sweep with non-default panel count.",
+  "airfoil": {
+    "type": "coordinates",
+    "path": "data/airfoils/stress/naca0024.dat",
+    "panel": true
+  },
+  "options": {
+    "viscous": false,
+    "mach_number": 0.0,
+    "panel_count": 180,
+    "itmax": 80
+  },
+  "requested_alpha_deg": [
+    -4.0,
+    0.0,
+    4.0,
+    8.0
+  ],
+  "completed_alpha_deg": [
+    -4.0,
+    0.0,
+    4.0,
+    8.0
+  ],
+  "missing_alpha_deg": [],
+  "complete": true,
+  "source": {
+    "tool": "pristine XFOIL",
+    "cases_file": "baselines/cases.json"
+  },
+  "polar": {
+    "airfoil_name": "NACA 0024",
+    "mach_number": 0.0,
+    "reynolds_number": 0.0,
+    "ncrit_top": 9.0,
+    "ncrit_bottom": 9.0,
+    "forced_xtr_top": 1.0,
+    "forced_xtr_bottom": 1.0,
+    "columns": [
+      "alpha_deg",
+      "cl",
+      "cd",
+      "cdp",
+      "cm",
+      "xtr_top",
+      "xtr_bottom",
+      "itr_top",
+      "itr_bottom"
+    ],
+    "points": [
+      {
+        "alpha_deg": -4.0,
+        "cl": -0.5284,
+        "cd": 0.0,
+        "cdp": -0.00237,
+        "cm": 0.0147,
+        "xtr_top": 0.0,
+        "xtr_bottom": 0.0,
+        "itr_top": 0.0,
+        "itr_bottom": 0.0
+      },
+      {
+        "alpha_deg": 0.0,
+        "cl": -0.0,
+        "cd": 0.0,
+        "cdp": -0.00236,
+        "cm": 0.0,
+        "xtr_top": 0.0,
+        "xtr_bottom": 0.0,
+        "itr_top": 0.0,
+        "itr_bottom": 0.0
+      },
+      {
+        "alpha_deg": 4.0,
+        "cl": 0.5284,
+        "cd": 0.0,
+        "cdp": -0.00237,
+        "cm": -0.0147,
+        "xtr_top": 0.0,
+        "xtr_bottom": 0.0,
+        "itr_top": 0.0,
+        "itr_bottom": 0.0
+      },
+      {
+        "alpha_deg": 8.0,
+        "cl": 1.0542,
+        "cd": 0.0,
+        "cdp": -0.00239,
+        "cm": -0.029,
+        "xtr_top": 0.0,
+        "xtr_bottom": 0.0,
+        "itr_top": 0.0,
+        "itr_bottom": 0.0
+      }
+    ]
+  }
+}

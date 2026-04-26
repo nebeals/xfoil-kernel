@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "case_id": "naca0012_visc_re1e6_forced_transition",
+  "description": "Built-in NACA 0012 viscous alpha sweep with early forced transition on both sides.",
+  "airfoil": {
+    "type": "naca",
+    "code": "0012"
+  },
+  "options": {
+    "viscous": true,
+    "reynolds_number": 1000000.0,
+    "mach_number": 0.0,
+    "ncrit_top": 9.0,
+    "ncrit_bottom": 9.0,
+    "xtr_top": 0.05,
+    "xtr_bottom": 0.05,
+    "panel_count": 160,
+    "itmax": 50
+  },
+  "requested_alpha_deg": [
+    -4.0,
+    -2.0,
+    0.0,
+    2.0,
+    4.0,
+    6.0,
+    8.0
+  ],
+  "completed_alpha_deg": [
+    -4.0,
+    -2.0,
+    0.0,
+    2.0,
+    4.0,
+    6.0,
+    8.0
+  ],
+  "missing_alpha_deg": [],
+  "complete": true,
+  "source": {
+    "tool": "pristine XFOIL",
+    "cases_file": "baselines/cases.json"
+  },
+  "polar": {
+    "airfoil_name": "NACA 0012",
+    "mach_number": 0.0,
+    "reynolds_number": 1000000.0,
+    "ncrit_top": 9.0,
+    "ncrit_bottom": 9.0,
+    "forced_xtr_top": 0.05,
+    "forced_xtr_bottom": 0.05,
+    "columns": [
+      "alpha_deg",
+      "cl",
+      "cd",
+      "cdp",
+      "cm",
+      "xtr_top",
+      "xtr_bottom",
+      "itr_top",
+      "itr_bottom"
+    ],
+    "points": [
+      {
+        "alpha_deg": -4.0,
+        "cl": -0.4472,
+        "cd": 0.01147,
+        "cdp": 0.00141,
+        "cm": -0.0005,
+        "xtr_top": 0.05,
+        "xtr_bottom": 0.05,
+        "itr_top": 62.4563,
+        "itr_bottom": 98.5437
+      },
+      {
+        "alpha_deg": -2.0,
+        "cl": -0.2242,
+        "cd": 0.01105,
+        "cdp": 0.00113,
+        "cm": -0.0002,
+        "xtr_top": 0.05,
+        "xtr_bottom": 0.05,
+        "itr_top": 62.4563,
+        "itr_bottom": 98.5437
+      },
+      {
+        "alpha_deg": 0.0,
+        "cl": 0.0,
+        "cd": 0.01091,
+        "cdp": 0.00104,
+        "cm": 0.0,
+        "xtr_top": 0.05,
+        "xtr_bottom": 0.05,
+        "itr_top": 62.4563,
+        "itr_bottom": 98.5437
+      },
+      {
+        "alpha_deg": 2.0,
+        "cl": 0.2242,
+        "cd": 0.01105,
+        "cdp": 0.00113,
+        "cm": 0.0002,
+        "xtr_top": 0.05,
+        "xtr_bottom": 0.05,
+        "itr_top": 62.4563,
+        "itr_bottom": 98.5437
+      },
+      {
+        "alpha_deg": 4.0,
+        "cl": 0.4472,
+        "cd": 0.01147,
+        "cdp": 0.00141,
+        "cm": 0.0005,
+        "xtr_top": 0.05,
+        "xtr_bottom": 0.05,
+        "itr_top": 62.4563,
+        "itr_bottom": 98.5437
+      },
+      {
+        "alpha_deg": 6.0,
+        "cl": 0.6673,
+        "cd": 0.01223,
+        "cdp": 0.00195,
+        "cm": 0.0013,
+        "xtr_top": 0.05,
+        "xtr_bottom": 0.05,
+        "itr_top": 62.4563,
+        "itr_bottom": 98.5437
+      },
+      {
+        "alpha_deg": 8.0,
+        "cl": 0.878,
+        "cd": 0.01399,
+        "cdp": 0.00317,
+        "cm": 0.0033,
+        "xtr_top": 0.039,
+        "xtr_bottom": 0.05,
+        "itr_top": 64.0192,
+        "itr_bottom": 98.5437
+      }
+    ]
+  }
+}

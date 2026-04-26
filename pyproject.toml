@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xfoil-kernel"
+version = "0.1.0"
+description = "Standalone tooling for a narrow, non-interactive XFOIL kernel workflow."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "GPL-2.0-or-later and LGPL-2.0-or-later components; see LICENSE.md" }
+authors = [
+  { name = "XFOIL Kernel contributors" },
+]
+dependencies = [
+  "PyYAML>=6.0",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Fortran",
+  "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
+  "Topic :: Scientific/Engineering",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8",
+]
+
+[project.scripts]
+xfoil-kernel-build-pristine = "xfoil_kernel_tools.build:main"
+xfoil-kernel-build-driver = "xfoil_kernel_tools.build:kernel_driver_main"
+xfoil-kernel-build-session = "xfoil_kernel_tools.build:kernel_session_main"
+xfoil-kernel-run-pristine = "xfoil_kernel_tools.baseline:main"
+xfoil-kernel-run-driver = "xfoil_kernel_tools.driver:main"
+xfoil-kernel-compare-driver = "xfoil_kernel_tools.cli:compare_kernel_driver"
+xfoil-kernel-write-references = "xfoil_kernel_tools.cli:write_references"
+xfoil-kernel-worker = "xfoil_kernel_tools.worker:main"
+xfoil-kernel-generate-c81 = "xfoil_kernel_tools.c81_generator:main"
+xfoil-kernel-api = "xfoil_kernel.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "tools" }
+
+[tool.setuptools.packages.find]
+where = ["tools"]

@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "naca0012_inviscid_alpha",
+      "description": "Built-in NACA 0012 inviscid alpha sweep for basic panel/inviscid regression.",
+      "airfoil": {
+        "type": "naca",
+        "code": "0012"
+      },
+      "options": {
+        "viscous": false,
+        "mach_number": 0.0,
+        "panel_count": 160,
+        "itmax": 40
+      },
+      "alpha_deg": [-4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0]
+    },
+    {
+      "id": "naca0012_visc_re1e6_free_transition",
+      "description": "Built-in NACA 0012 viscous alpha sweep with free transition allowed before trailing-edge trips.",
+      "airfoil": {
+        "type": "naca",
+        "code": "0012"
+      },
+      "options": {
+        "viscous": true,
+        "reynolds_number": 1000000.0,
+        "mach_number": 0.0,
+        "ncrit_top": 9.0,
+        "ncrit_bottom": 9.0,
+        "xtr_top": 1.0,
+        "xtr_bottom": 1.0,
+        "panel_count": 160,
+        "itmax": 50
+      },
+      "alpha_deg": [-4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0]
+    },
+    {
+      "id": "naca0012_visc_re1e6_forced_transition",
+      "description": "Built-in NACA 0012 viscous alpha sweep with early forced transition on both sides.",
+      "airfoil": {
+        "type": "naca",
+        "code": "0012"
+      },
+      "options": {
+        "viscous": true,
+        "reynolds_number": 1000000.0,
+        "mach_number": 0.0,
+        "ncrit_top": 9.0,
+        "ncrit_bottom": 9.0,
+        "xtr_top": 0.05,
+        "xtr_bottom": 0.05,
+        "panel_count": 160,
+        "itmax": 50
+      },
+      "alpha_deg": [-4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0]
+    },
+    {
+      "id": "naca0012_option_ncrit3_alpha4",
+      "description": "NACA 0012 option check with lower e^n transition amplification factor.",
+      "airfoil": {
+        "type": "naca",
+        "code": "0012"
+      },
+      "options": {
+        "viscous": true,
+        "reynolds_number": 1000000.0,
+        "mach_number": 0.0,
+        "ncrit": 3.0,
+        "xtr_top": 1.0,
+        "xtr_bottom": 1.0,
+        "panel_count": 160,
+        "itmax": 80
+      },
+      "alpha_deg": [4.0]
+    },
+    {
+      "id": "naca0012_option_split_ncrit_alpha4",
+      "description": "NACA 0012 option check with explicit top/bottom e^n transition settings.",
+      "airfoil": {
+        "type": "naca",
+        "code": "0012"
+      },
+      "options": {
+        "viscous": true,
+        "reynolds_number": 1000000.0,
+        "mach_number": 0.0,
+        "ncrit_top": 3.0,
+        "ncrit_bottom": 11.0,
+        "xtr_top": 1.0,
+        "xtr_bottom": 1.0,
+        "panel_count": 160,
+        "itmax": 80
+      },
+      "alpha_deg": [4.0]
+    },
+    {
+      "id": "naca0012_option_re5e5_alpha4",
+      "description": "NACA 0012 option check at a lower Reynolds number.",
+      "airfoil": {
+        "type": "naca",
+        "code": "0012"
+      },
+      "options": {
+        "viscous": true,
+        "reynolds_number": 500000.0,
+        "mach_number": 0.0,
+        "ncrit": 9.0,
+        "xtr_top": 1.0,
+        "xtr_bottom": 1.0,
+        "panel_count": 160,
+        "itmax": 80
+      },
+      "alpha_deg": [4.0]
+    },
+    {
+      "id": "naca0012_option_mach02_alpha4",
+      "description": "NACA 0012 option check at nonzero Mach number.",
+      "airfoil": {
+        "type": "naca",
+        "code": "0012"
+      },
+      "options": {
+        "viscous": true,
+        "reynolds_number": 1000000.0,
+        "mach_number": 0.2,
+        "ncrit": 9.0,
+        "xtr_top": 1.0,
+        "xtr_bottom": 1.0,
+        "panel_count": 160,
+        "itmax": 80
+      },
+      "alpha_deg": [4.0]
+    },
+    {
+      "id": "naca0012_option_panel220_alpha4",
+      "description": "NACA 0012 option check with a different panel count.",
+      "airfoil": {
+        "type": "naca",
+        "code": "0012"
+      },
+      "options": {
+        "viscous": true,
+        "reynolds_number": 1000000.0,
+        "mach_number": 0.0,
+        "ncrit": 9.0,
+        "xtr_top": 1.0,
+        "xtr_bottom": 1.0,
+        "panel_count": 220,
+        "itmax": 80
+      },
+      "alpha_deg": [4.0]
+    },
+    {
+      "id": "naca2412_visc_re1e6_free_transition",
+      "description": "Built-in NACA 2412 viscous cambered-airfoil sweep.",
+      "airfoil": {
+        "type": "naca",
+        "code": "2412"
+      },
+      "options": {
+        "viscous": true,
+        "reynolds_number": 1000000.0,
+        "mach_number": 0.0,
+        "ncrit_top": 9.0,
+        "ncrit_bottom": 9.0,
+        "xtr_top": 1.0,
+        "xtr_bottom": 1.0,
+        "panel_count": 160,
+        "itmax": 50
+      },
+      "alpha_deg": [-4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0]
+    },
+    {
+      "id": "sc1095_visc_re1e6_free_transition",
+      "description": "SC1095 coordinate-file rotorcraft baseline with free transition allowed before trailing-edge trips.",
+      "airfoil": {
+        "type": "coordinates",
+        "path": "data/airfoils/sc1095_selig.dat",
+        "panel": true
+      },
+      "options": {
+        "viscous": true,
+        "reynolds_number": 1000000.0,
+        "mach_number": 0.0,
+        "ncrit_top": 9.0,
+        "ncrit_bottom": 9.0,
+        "xtr_top": 1.0,
+        "xtr_bottom": 1.0,
+        "panel_count": 160,
+        "itmax": 50
+      },
+      "alpha_deg": [-4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0]
+    },
+    {
+      "id": "stress_naca0024_inviscid_alpha",
+      "description": "Coordinate-file NACA 0024 thick-airfoil inviscid sweep with non-default panel count.",
+      "airfoil": {
+        "type": "coordinates",
+        "path": "data/airfoils/stress/naca0024.dat",
+        "panel": true
+      },
+      "options": {
+        "viscous": false,
+        "mach_number": 0.0,
+        "panel_count": 180,
+        "itmax": 80
+      },
+      "alpha_deg": [-4.0, 0.0, 4.0, 8.0]
+    },
+    {
+      "id": "stress_s102_visc_re1e6_free_transition",
+      "description": "S102 coordinate-file stress case with viscous free-transition points away from the known negative-stall trouble region.",
+      "airfoil": {
+        "type": "coordinates",
+        "path": "data/airfoils/stress/s102.dat",
+        "panel": true
+      },
+      "options": {
+        "viscous": true,
+        "reynolds_number": 1000000.0,
+        "mach_number": 0.0,
+        "ncrit": 9.0,
+        "xtr_top": 1.0,
+        "xtr_bottom": 1.0,
+        "panel_count": 180,
+        "itmax": 100
+      },
+      "alpha_deg": [-4.0, 0.0, 4.0]
+    },
+    {
+      "id": "stress_s1223_visc_re5e5_forced_transition",
+      "description": "S1223 high-camber coordinate-file stress case with low-Re forced transition.",
+      "airfoil": {
+        "type": "coordinates",
+        "path": "data/airfoils/stress/S1223-selig.dat",
+        "panel": true
+      },
+      "options": {
+        "viscous": true,
+        "reynolds_number": 500000.0,
+        "mach_number": 0.0,
+        "ncrit": 9.0,
+        "xtr_top": 0.05,
+        "xtr_bottom": 0.05,
+        "panel_count": 180,
+        "itmax": 120
+      },
+      "alpha_deg": [0.0, 2.0, 4.0]
+    }
+  ]
+}

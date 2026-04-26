@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "case_id": "stress_s102_visc_re1e6_free_transition",
+  "description": "S102 coordinate-file stress case with viscous free-transition points away from the known negative-stall trouble region.",
+  "airfoil": {
+    "type": "coordinates",
+    "path": "data/airfoils/stress/s102.dat",
+    "panel": true
+  },
+  "options": {
+    "viscous": true,
+    "reynolds_number": 1000000.0,
+    "mach_number": 0.0,
+    "ncrit": 9.0,
+    "xtr_top": 1.0,
+    "xtr_bottom": 1.0,
+    "panel_count": 180,
+    "itmax": 100
+  },
+  "requested_alpha_deg": [
+    -4.0,
+    0.0,
+    4.0
+  ],
+  "completed_alpha_deg": [
+    -4.0,
+    0.0,
+    4.0
+  ],
+  "missing_alpha_deg": [],
+  "complete": true,
+  "source": {
+    "tool": "pristine XFOIL",
+    "cases_file": "baselines/cases.json"
+  },
+  "polar": {
+    "airfoil_name": "SOMERS S102 AIRFOIL (BLUNT)",
+    "mach_number": 0.0,
+    "reynolds_number": 1000000.0,
+    "ncrit_top": 9.0,
+    "ncrit_bottom": 9.0,
+    "forced_xtr_top": 1.0,
+    "forced_xtr_bottom": 1.0,
+    "columns": [
+      "alpha_deg",
+      "cl",
+      "cd",
+      "cdp",
+      "cm",
+      "xtr_top",
+      "xtr_bottom",
+      "itr_top",
+      "itr_bottom"
+    ],
+    "points": [
+      {
+        "alpha_deg": -4.0,
+        "cl": -0.1143,
+        "cd": 0.00924,
+        "cdp": 0.00143,
+        "cm": -0.0719,
+        "xtr_top": 0.7171,
+        "xtr_bottom": 0.0498,
+        "itr_top": 22.108,
+        "itr_bottom": 108.3847
+      },
+      {
+        "alpha_deg": 0.0,
+        "cl": 0.3632,
+        "cd": 0.00716,
+        "cdp": 0.00137,
+        "cm": -0.0817,
+        "xtr_top": 0.6607,
+        "xtr_bottom": 0.6174,
+        "itr_top": 26.0986,
+        "itr_bottom": 150.8871
+      },
+      {
+        "alpha_deg": 4.0,
+        "cl": 0.8009,
+        "cd": 0.01017,
+        "cdp": 0.002,
+        "cm": -0.083,
+        "xtr_top": 0.2282,
+        "xtr_bottom": 0.6307,
+        "itr_top": 57.5445,
+        "itr_bottom": 151.8227
+      }
+    ]
+  }
+}
