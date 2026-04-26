@@ -12,16 +12,16 @@ regression baselines.
 Generate scripts without launching XFOIL:
 
 ```bash
-python xfoil-kernel/scripts/run_pristine_xfoil.py --dry-run
+python scripts/run_pristine_xfoil.py --dry-run
 ```
 
 Run against a built pristine XFOIL executable:
 
 ```bash
-python xfoil-kernel/scripts/build_pristine_xfoil.py
-python xfoil-kernel/scripts/run_pristine_xfoil.py \
-  --xfoil-executable xfoil-kernel/build/pristine-xfoil/bin/xfoil
-python xfoil-kernel/scripts/write_reference_baselines.py
+python scripts/build_pristine_xfoil.py
+python scripts/run_pristine_xfoil.py \
+  --xfoil-executable build/pristine-xfoil/bin/xfoil
+python scripts/write_reference_baselines.py
 ```
 
 The runner reports a missing XFOIL executable cleanly and supports `--dry-run`

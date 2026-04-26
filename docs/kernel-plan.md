@@ -48,11 +48,11 @@ Everything else in XFOIL is out of scope unless required to support that path.
 - A vendored XFOIL source snapshot exists under `vendor/xfoil/` for pristine
   comparison and provenance. The normal kernel driver/session build now uses
   the tracked selected source tree under `fortran/kernel/`.
-- Phase 5 is in place for the current staged package boundary: the public
+- Phase 5 is in place for the current source-tree package boundary: the public
   `xfoil_kernel` API covers airfoil registration, status/capability queries,
   single-alpha solves, alpha-sequence solves, typed results, C81 generation
   wrappers, examples, docs, and the `xfoil-kernel-api` CLI.
-- Phase 6 is complete for the staged extraction boundary: the extracted kernel
+- Phase 6 is complete for the extracted-source boundary: the extracted kernel
   source tree is tracked and used by the normal kernel driver/session build, the
   refresh recipe writes only selected subprograms for every tracked Fortran
   source file in `fortran/kernel/`, and source groups are documented.
@@ -269,7 +269,7 @@ public-API alpha-sequence script, with smoke tests that compile the example
 scripts and exercise the bundled manifest through a fake worker. The public API
 now exposes worker `status()` metadata, and the packaged `xfoil-kernel-api`
 CLI provides status, single-alpha, alpha-sequence, and C81-generation commands
-over the same client layer. Phase 5 is complete for this staged source-tree
+over the same client layer. Phase 5 is complete for this source-tree
 workflow.
 
 ## Phase 6: Extracted Kernel Source
@@ -288,7 +288,7 @@ baselines. The selected sources are grouped as airfoil I/O, geometry,
 panel/inviscid solve, and viscous boundary layer in both the build tooling and
 `fortran/kernel/README.md`.
 
-Phase 6 is complete for this source-tree staging boundary. Further numerical
+Phase 6 is complete for this source-tree extraction boundary. Further numerical
 restructuring belongs in Phase 7, where the cost and risk of changing XFOIL's
 COMMON-block state can be handled deliberately.
 

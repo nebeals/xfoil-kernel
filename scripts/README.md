@@ -13,7 +13,7 @@ a built pristine XFOIL executable when available, and parses the resulting
 polar save files into JSON summaries.
 
 `build_pristine_xfoil.py` compiles a local pristine-XFOIL executable into
-`xfoil-kernel/build/pristine-xfoil/bin/xfoil` using the vendored XFOIL source
+`build/pristine-xfoil/bin/xfoil` using the vendored XFOIL source
 tree as read-only input. Set `XFOIL_ROOT` or pass `--xfoil-root` to compare
 against another source checkout.
 
@@ -21,7 +21,7 @@ against another source checkout.
 tracked JSON reference files under `baselines/reference/`.
 
 `build_kernel_driver.py` builds `fortran/xfoil_kernel_driver.f` into
-`xfoil-kernel/build/kernel-driver/bin/xfoil_kernel_driver`. It compiles the
+`build/kernel-driver/bin/xfoil_kernel_driver`. It compiles the
 tracked extracted sources under `fortran/kernel/`, where every Fortran source
 file is a selected subprogram extract. The driver build avoids
 plotlib/X11 entirely and uses fail-fast prompt stubs for any legacy prompt
@@ -34,7 +34,7 @@ checkout selected with `--xfoil-root`.
 direct-call driver and writes local run summaries under `runs/kernel-driver/`.
 
 The same build also produces
-`xfoil-kernel/build/kernel-driver/bin/xfoil_kernel_session`, a persistent
+`build/kernel-driver/bin/xfoil_kernel_session`, a persistent
 compiled session that the JSON-lines worker can use with `--use-session`.
 
 `compare_kernel_driver.py` compares those run summaries with the tracked

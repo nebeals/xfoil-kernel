@@ -1,7 +1,7 @@
 C***********************************************************************
 C  Minimal non-interactive XFOIL kernel driver.
 C
-C  This file is local XFOIL kernel staging code. It links against the tracked
+C  This file is local XFOIL kernel driver code. It links against the tracked
 C  extracted kernel sources and shared non-interactive kernel core routines.
 C***********************************************************************
       PROGRAM XFOIL_KERNEL_DRIVER

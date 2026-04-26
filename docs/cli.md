@@ -50,10 +50,10 @@ Generate C81 tables from a YAML manifest:
 xfoil-kernel-api generate-c81 examples/c81_naca0012.yaml
 ```
 
-The legacy/staging commands such as `xfoil-kernel-worker` and
-`xfoil-kernel-generate-c81` remain available for lower-level development and
-regression work. Normal users should prefer `xfoil-kernel-api` unless they need
-to exercise those internal surfaces directly.
+Lower-level commands such as `xfoil-kernel-worker` and
+`xfoil-kernel-generate-c81` remain available for development and regression
+work. Normal users should prefer `xfoil-kernel-api` unless they need to
+exercise those internal surfaces directly.
 
 ## Common Options
 

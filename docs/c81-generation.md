@@ -14,7 +14,7 @@ instead of calling XFOIL inside the analysis loop.
 - build the direct-call kernel driver:
 
   ```bash
-  python xfoil-kernel/scripts/build_kernel_driver.py
+  python scripts/build_kernel_driver.py
   ```
 
   This build also emits `build/kernel-driver/bin/xfoil_kernel_session`, which
@@ -137,14 +137,14 @@ Paneling settings:
 ## Running
 
 ```bash
-python xfoil-kernel/scripts/generate_c81.py path/to/c81_manifest.yaml
+python scripts/generate_c81.py path/to/c81_manifest.yaml
 ```
 
 The command uses the persistent compiled session by default. To force the
 one-shot driver fallback:
 
 ```bash
-python xfoil-kernel/scripts/generate_c81.py path/to/c81_manifest.yaml --one-shot
+python scripts/generate_c81.py path/to/c81_manifest.yaml --one-shot
 ```
 
 XFOIL's viscous solver is path dependent, so the generator does not treat the
@@ -184,7 +184,7 @@ initial guess and are not written as C81 target points.
 To write tables from the common converged alpha points anyway:
 
 ```bash
-python xfoil-kernel/scripts/generate_c81.py path/to/c81_manifest.yaml --allow-incomplete
+python scripts/generate_c81.py path/to/c81_manifest.yaml --allow-incomplete
 ```
 
 Use this only after inspecting the report. Missing points near stall are common,

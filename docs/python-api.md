@@ -21,14 +21,14 @@ or script-only entry points for common workflows.
 
 ## Installation Boundary
 
-The current staged package supports editable/source-tree installs:
+The current package supports editable/source-tree installs:
 
 ```bash
 python -m pip install -e ".[test]"
 ```
 
 The public `xfoil_kernel` API and console entry points can be imported from a
-normal wheel install, but the wheel does not yet bundle the full staged Fortran,
+normal wheel install, but the wheel does not yet bundle the full Fortran,
 baseline, data, and vendored XFOIL source payload. Workflows that build the
 kernel executables, compare baselines, or generate C81 tables should run from
 an editable/source-tree install or set `XFOIL_KERNEL_ROOT` to the source
@@ -37,12 +37,12 @@ wheel strategy is chosen.
 
 ## Public Import Surface
 
-The public module is `xfoil_kernel`. The current `xfoil_kernel_tools` package
-remains as implementation scaffolding during staging, but users should not need
-to import it for normal workflows. Names imported from `xfoil_kernel` are the
-supported public API for Phase 5; `xfoil_kernel_tools` should be treated as
-internal/staging machinery unless a lower-level development workflow explicitly
-requires it.
+The public module is `xfoil_kernel`. The `xfoil_kernel_tools` package
+contains lower-level build, driver, baseline, and worker support code. Normal
+users should not need to import it directly. Names imported from
+`xfoil_kernel` are the supported public API; `xfoil_kernel_tools` should be
+treated as internal support unless a lower-level development workflow
+explicitly requires it.
 
 Top-level exports:
 
@@ -70,7 +70,7 @@ from xfoil_kernel import (
 ```
 
 `__version__` mirrors the installed package version when package metadata is
-available and falls back to the staged source version when running directly
+available and falls back to the source-tree version when running directly
 from a checkout.
 
 ## Configuration
