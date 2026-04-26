@@ -1,246 +1,251 @@
-# XFOIL Kernel Staging Area
+# xfoil-kernel
 
-This directory is an in-tree staging area for a future standalone XFOIL kernel
-project. It is intentionally isolated so the eventual XFOIL-derived code can be
-moved into its own repository with a clean license and distribution boundary.
+A standalone, non-interactive XFOIL kernel for generating 2-D airfoil section
+polars, C81 tables, and structured convergence diagnostics.
 
-## Current State
+`xfoil-kernel` packages a narrow XFOIL-derived workflow around the parts needed
+by airfoil polar providers: airfoil loading, panel generation, inviscid solves,
+viscous boundary-layer solves, transition controls, and coefficient reporting.
+It is intended for scripted engineering workflows where interactive menus,
+plotting, and hand-edited polar files are the wrong interface.
 
-This tree is a working staging package, not just a plan:
+The project currently provides:
 
-- pristine-XFOIL baseline cases and compact reference outputs are tracked,
-- XFOIL 6.99 source material is vendored under `vendor/xfoil/`,
-- an extracted Fortran kernel source tree exists under
-  `fortran/kernel/`,
-- a direct-call Fortran driver exists at `fortran/xfoil_kernel_driver.f`,
-- a persistent Fortran session exists at `fortran/xfoil_kernel_session.f`,
-- shared Fortran core routines at `fortran/xfoil_kernel_core.f` centralize the
-  COMMON-touching setup and solve path used by both executable front ends,
-- the kernel-driver build compiles from the tracked extracted source tree by
-  default, removes plot initialization, and does not compile plotlib/X11,
-- every tracked Fortran source in the extracted kernel tree is generated as a
-  selected subprogram extract,
-- `scripts/xfoil_worker.py` provides a JSON-lines Python worker around the
-  direct-call driver or persistent compiled session,
-- `tools/xfoil_kernel/` provides the public Python API over the worker and C81
-  generation workflow,
-- `scripts/generate_c81.py` can generate C81 tables through `c81_utils`,
-- `tests/` covers baseline parsing, worker protocol behavior, direct-driver
-  comparison when the driver is built, option propagation, persistent-session
-  behavior, modernization safety characterization, and C81 generation logic.
+- tracked pristine-XFOIL comparison baselines,
+- a selected extracted Fortran kernel source tree under `fortran/kernel/`,
+- a one-shot Fortran driver for direct alpha-sequence solves,
+- a persistent Fortran session that keeps warm XFOIL state between compatible
+  requests,
+- a JSON-lines Python worker process,
+- a public Python API and `xfoil-kernel-api` command-line interface,
+- an offline C81 table-generation workflow,
+- tests that compare the extracted kernel against stored XFOIL references.
 
-The current driver can solve alpha sequences and return `cl`, `cd`, `cm`,
-transition outputs, and convergence diagnostics. The persistent session keeps
-one XFOIL COMMON-block state alive, reusing geometry/panel state and warm
-viscous state across compatible solve requests. Smoke and stress C81 generation
-runs have also been performed locally under `runs/`; run outputs are
-intentionally ignored because they are generated artifacts.
+## Status
 
-What is not done yet: the worker is still a Python front end, the JSON protocol
-is not parsed by a compiled standalone executable, the kernel is not packaged as
-a separate repository, and the extracted numerical routines still use XFOIL's
-COMMON-block state and original legacy structure.
+This is alpha engineering software. The current implementation is useful for
+local scripted workflows, but the package boundary is still source-tree
+oriented: build, baseline, and C81-generation commands expect access to this
+checkout's `fortran/`, `baselines/`, `data/`, and `vendor/` directories.
+
+The extracted numerical routines still use XFOIL's original COMMON-block state
+and legacy Fortran structure. A small shared Fortran core centralizes the
+non-interactive setup and solve path, but this is not yet a reentrant library
+API.
+
+## Requirements
+
+- Python 3.10 or newer
+- `gfortran` for building the kernel executables
+- `pytest` for tests, via the `test` extra
+- `c81_utils` only when generating C81 tables
+
+The pristine-XFOIL comparison build may also require the platform dependencies
+needed by the original XFOIL/plotlib build. The normal extracted-kernel build
+does not link plotlib or X11.
 
 ## Install
 
-From this directory, install the Python tooling in editable mode:
+For development and normal source-tree use:
 
 ```bash
+git clone git@github.com:nebeals/xfoil-kernel.git
+cd xfoil-kernel
 python -m pip install -e ".[test]"
 ```
 
-Editable/source-tree installation is the supported development and staging
-install mode. It keeps the Python entry points connected to the tracked
-`fortran/`, `baselines/`, `data/`, and vendored `vendor/xfoil/` source material
-used by the build and reference commands.
-
-A normal wheel install currently provides the public Python import surface and
-console entry points, but it does not yet bundle the full Fortran/source tree
-payload. Build, baseline, and table-generation workflows therefore need either
-an editable/source-tree install or `XFOIL_KERNEL_ROOT=/path/to/xfoil-kernel`
-pointing at a source checkout.
-
-The command-line entry points are then available as:
-
-```text
-xfoil-kernel-build-pristine
-xfoil-kernel-build-driver
-xfoil-kernel-build-session
-xfoil-kernel-run-pristine
-xfoil-kernel-run-driver
-xfoil-kernel-compare-driver
-xfoil-kernel-write-references
-xfoil-kernel-worker
-xfoil-kernel-generate-c81
-xfoil-kernel-api
-```
-
-The pristine-XFOIL build tools use `vendor/xfoil/` by default. The kernel
-driver/session build uses tracked sources under `fortran/kernel/`; pass
-`--refresh-extracted-sources` only when intentionally regenerating that
-extraction from `vendor/xfoil/` or another source tree. Set
-`XFOIL_KERNEL_ROOT=/path/to/xfoil-kernel` only when running installed tools from
-outside the source checkout and the automatic root detection is not enough. If
-the tools cannot find a source checkout, commands that need the staged Fortran
-or baseline files fail with a source-root diagnostic instead of silently using a
-Python installation directory as the project root.
-
-Build the pristine baseline executable and kernel executables with:
+A normal wheel install currently exposes the Python import surface and console
+entry points, but it does not yet bundle the full Fortran, baseline, data, and
+vendored-source payload. For build and table-generation workflows, run from a
+source checkout or set:
 
 ```bash
-python scripts/build_pristine_xfoil.py
+export XFOIL_KERNEL_ROOT=/path/to/xfoil-kernel
+```
+
+## Build
+
+Build the extracted kernel driver and persistent session:
+
+```bash
 python scripts/build_kernel_driver.py
 ```
 
-or, from an editable install:
+or, after an editable install:
 
 ```bash
-xfoil-kernel-build-pristine
 xfoil-kernel-build-driver
 xfoil-kernel-build-session
 ```
 
-## Goal
+The normal build uses the tracked selected source tree under `fortran/kernel/`.
+The vendored XFOIL snapshot under `vendor/xfoil/` is retained for provenance,
+refreshing the extraction, and pristine-reference comparisons.
 
-Extract the subset of XFOIL needed by airfoil polar providers:
+Only refresh the extracted sources intentionally:
 
-- airfoil loading from coordinates or NACA designations,
-- normalization, spline, and panel setup,
-- inviscid operating-point solve,
-- viscous boundary-layer solve through the `VISCAL` path,
-- forced-transition controls, free-transition settings, and actual transition
-  outputs,
-- `cl`, `cd`, `cm`, and convergence diagnostics.
+```bash
+python scripts/build_kernel_driver.py --refresh-extracted-sources
+```
 
-XFOIL's forced-transition input is `XSTRIP(1)` / `XSTRIP(2)`, shown in
-XFOIL's `VPAR` menu as top/bottom `Xtr` or `Xtrip`. The kernel protocol uses
-`xtr_top` and `xtr_bottom` for those inputs. `0.0` forces transition at the
-leading edge; `1.0` puts the forced trip at the trailing edge, so transition is
-effectively free before then and is governed by the e^n `Ncrit` settings.
-Actual computed transition locations should also be returned from `XOCTR(1)` /
-`XOCTR(2)`.
+## Quick Start
 
-The kernel should not include the interactive menus, plotting system, inverse
-design tools, polar plotting UI, or hardcopy/PostScript support.
+Show worker status:
 
-## Supported Runtime Contract
+```bash
+xfoil-kernel-api status
+```
 
-Airfoils:
+Solve a single alpha point:
 
-- built-in NACA designations through `naca`,
-- coordinate files or coordinate arrays through `type: coordinates`,
-- optional `panel: false` for direct use of supplied coordinates.
+```bash
+xfoil-kernel-api solve-alpha \
+  --naca 0012 \
+  --alpha 4 \
+  --reynolds 1000000
+```
 
-Coordinate airfoils default to `panel: true`, which follows XFOIL's normal
-`LOAD -> PANGEN` path. `PANGEN` splines the buffer geometry, distributes panel
-nodes from curvature and paneling settings, handles doubled/corner points, and
-creates the current airfoil. `panel_count` maps to XFOIL's `NPAN`. The kernel
-does not currently expose geometry-editing tools such as `ADDP`, `CORN`,
-`DELP`, or `MOVP`, and it does not expose the full `PPAR` panel-shape controls
-beyond panel count.
+Solve an alpha sequence:
 
-Solve options:
+```bash
+xfoil-kernel-api solve-alpha-sequence \
+  --naca 0012 \
+  --alpha -4 -2 0 2 4 \
+  --reynolds 1000000 \
+  --panel-count 180
+```
 
-- `viscous`: `true` calls `VISCAL`; `false` runs the inviscid path and reports
-  zero profile drag from the kernel driver,
-- `reynolds_number`: XFOIL `REINF1`,
-- `mach_number`: XFOIL `MINF1`,
-- `ncrit`: common e^n critical amplification value,
-- `ncrit_top` / `ncrit_bottom`: advanced top/bottom overrides,
-- `xtr_top` / `xtr_bottom`: forced-transition trip locations,
-- `itmax`: viscous iteration limit,
-- `panel_count`: requested generated panel nodes.
+Generate C81 tables from a manifest:
 
-Requests should prefer alpha sequences over isolated points. XFOIL's viscous
-solver is path dependent, and nearby previous solutions are part of the
-numerical method rather than just a speed optimization.
+```bash
+xfoil-kernel-api generate-c81 examples/c81_naca0012.yaml
+```
+
+C81 generation requires `c81_utils` to be installed or otherwise importable.
+
+## Python API
+
+```python
+from xfoil_kernel import AirfoilSpec, SolveOptions, XfoilKernelClient
+
+with XfoilKernelClient() as client:
+    client.register_airfoil("naca0012", AirfoilSpec.naca("0012"))
+    result = client.solve_alpha_sequence(
+        "naca0012",
+        alpha_deg=[-4.0, -2.0, 0.0, 2.0, 4.0],
+        options=SolveOptions(
+            viscous=True,
+            reynolds_number=1_000_000.0,
+            mach_number=0.0,
+            ncrit=9.0,
+            xtr_top=1.0,
+            xtr_bottom=1.0,
+            panel_count=180,
+            itmax=100,
+        ),
+    )
+
+for point in result.points:
+    print(point.alpha_deg, point.cl, point.cd, point.cm, point.converged)
+```
+
+See `docs/python-api.md` for the complete public API contract.
+
+## Runtime Model
+
+The preferred solve unit is an alpha sequence, not isolated alpha points. XFOIL's
+viscous solver is path dependent: nearby previous solutions provide useful
+initial guesses for the next point. The persistent session preserves geometry,
+panel, and boundary-layer state across compatible requests and invalidates that
+state when geometry, Reynolds number, Mach number, transition settings, or
+viscous mode change.
+
+The public transition inputs are:
+
+- `ncrit`: common e^n critical amplification ratio,
+- `ncrit_top` and `ncrit_bottom`: advanced split-surface overrides,
+- `xtr_top` and `xtr_bottom`: forced-transition trip locations.
+
+`xtr=0.0` forces transition at the leading edge. `xtr=1.0` places the forced
+trip at the trailing edge, leaving earlier natural transition to the e^n model.
 
 ## Convergence Contract
 
-The kernel should not fabricate missing polar points. A solve request can be
-protocol-valid and still be physically or numerically incomplete. In that case
-the worker response is `ok: true`, `complete: false`, and lists
-`missing_alpha_deg`. The offline C81 generator is strict by default and refuses
-to write a table when requested points are missing unless the user explicitly
-chooses `allow_incomplete`.
+The kernel does not fabricate missing polar points. A protocol-valid solve can
+still be numerically incomplete; in that case the result identifies the missing
+angles of attack and includes convergence diagnostics. The C81 generator is
+strict by default and refuses to write incomplete tables unless the user
+explicitly opts into `allow_incomplete`.
 
-This is expected near stall or strong separation. For example, a highly curved
-airfoil can legitimately fail at a negative-alpha point where the bottom
-surface is separated. The correct workflow is to inspect the report and choose
-whether to narrow the requested alpha range or accept a truncated table.
+This behavior is intentional. Near stall, strong separation, or difficult
+geometries, missing points are data that should be reviewed rather than silently
+filled.
 
-## Package Boundary
+## Validation
 
-The intended architecture is process-isolated:
+Run the Python and integration test suite:
 
-```text
-client application
-  generic airfoil polar interface
-  optional subprocess or Python API client
-
-xfoil-kernel
-  GPL-compatible XFOIL-derived worker executable
-  JSON-lines protocol
-  regression baselines against pristine XFOIL
+```bash
+PYTHONPATH=tools pytest -q tests
 ```
 
-Downstream applications do not need to import or link XFOIL-derived code
-directly. A client can talk to this worker through stdin/stdout, a Unix socket,
-another ordinary interprocess protocol, or the public Python API wrapping the
-same kernel functions and higher-level table-generation routines.
+Build the extracted driver and run the stored reference comparison:
 
-## Current Layout
+```bash
+PYTHONPATH=tools python scripts/build_kernel_driver.py --clean
+PYTHONPATH=tools python scripts/run_kernel_driver.py
+PYTHONPATH=tools python scripts/compare_kernel_driver.py
+```
+
+The `sc1095_visc_re1e6_free_transition` reference intentionally records one
+known incomplete point at `0.0 deg`; the comparison tooling treats that as part
+of the current characterized behavior.
+
+## Project Layout
 
 ```text
 xfoil-kernel/
-  README.md
-  LICENSE.md                 license intent and provenance notes
-  .gitignore                 local build/run artifacts
-  docs/
-    kernel-plan.md           extraction and modernization plan
-    protocol.md              initial worker protocol
-    python-api.md            public Python API
-    cli.md                   public CLI
-    c81-generation.md        offline C81 table generation workflow
-    warm-start-state.md      viscous continuation state notes
-  examples/
-    c81_naca0012.yaml        minimal offline C81 generation manifest
-  fortran/
-    kernel/                  selected extracted kernel sources and includes
-    xfoil_kernel_core.f      shared non-interactive core routines
-    xfoil_kernel_driver.f    first direct-call namelist driver
-    xfoil_kernel_session.f   persistent command-loop session driver
-    kernel_prompt_stubs.f    fail-fast replacements for legacy prompts
-    README.md                Fortran extraction notes
-  scripts/
-    build_pristine_xfoil.py  local pristine-XFOIL build helper
-    build_kernel_driver.py   direct-call driver build helper
-    run_pristine_xfoil.py    baseline deck generation and runner
-    run_kernel_driver.py     direct-call driver baseline runner
-    compare_kernel_driver.py reference comparison helper
-    xfoil_worker.py          JSON-lines worker front end
-    generate_c81.py          offline XFOIL-to-C81 table generator
-    write_reference_baselines.py
-  tests/
-    README.md                regression-test strategy
-  tools/
-    xfoil_kernel/            public Python API facade
-    xfoil_kernel_tools/      baseline/build/driver/worker helper code
-  baselines/
-    cases.json               curated pristine-XFOIL cases
-    reference/               compact tracked reference outputs
-  vendor/
-    xfoil/                    vendored XFOIL source snapshot
+  baselines/              curated cases and compact reference outputs
+  data/airfoils/          sample and stress-test coordinate files
+  docs/                   protocol, API, CLI, C81, and planning notes
+  examples/               example C81 manifest and API usage
+  fortran/                extracted kernel drivers and selected XFOIL sources
+  scripts/                build, baseline, worker, and C81 command wrappers
+  tests/                  regression and integration tests
+  tools/xfoil_kernel/     public Python API
+  tools/xfoil_kernel_tools/ internal build/driver/worker support code
+  vendor/xfoil/           vendored XFOIL 6.99 source snapshot
 ```
 
-## Near-Term Steps
+## Documentation
 
-1. Keep using `scripts/generate_c81.py` as the first production workflow:
-   generate C81 tables offline, inspect the convergence report, and point
-   downstream analysis tools at the generated files.
-2. Continue polishing the Python API around the existing worker and C81
-   generator so users can call common workflows without assembling raw JSON.
-3. Decide whether the persistent worker should keep using the Python front end
-   or move JSON parsing into a compiled worker.
-4. Continue reducing vendored XFOIL source only where it removes real packaging
-   risk without disturbing the validated numerical path.
+- `docs/python-api.md`: public Python API
+- `docs/cli.md`: command-line interface
+- `docs/protocol.md`: JSON-lines worker protocol
+- `docs/c81-generation.md`: offline C81 table workflow
+- `docs/warm-start-state.md`: viscous state and reset behavior
+- `docs/kernel-plan.md`: extraction and modernization plan
+
+## License and Provenance
+
+This repository includes XFOIL-derived code and a vendored XFOIL 6.99 source
+snapshot. XFOIL is GPL-licensed, and plotlib components carry LGPL/GPL license
+terms. See `LICENSE.md`, `vendor/README.md`, and `vendor/xfoil/COPYING` for the
+current provenance and license notes.
+
+Applications that need license isolation should communicate with this project
+through a process boundary such as the JSON-lines worker or the Python API that
+wraps that worker.
+
+## Roadmap
+
+Current future-development topics include:
+
+- adding CL-sequence solving through XFOIL's `SPECCL` path,
+- deciding whether direct in-process bindings are worth the packaging and
+  numerical-state risk,
+- replacing COMMON-block state with an explicit state object only if true
+  reentrancy becomes important,
+- choosing a relocatable wheel strategy for the Fortran, baseline, data, and
+  vendored-source payload,
+- exposing additional paneling controls if users need more than `panel_count`.
